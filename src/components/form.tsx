@@ -56,7 +56,7 @@ export const Form = ({ type = "random" }: { type: "random" | "pin" }) => {
       <form.Field
         name="charsLength"
         children={(field) => (
-          <>
+          <div className={styles["range-container"]}>
             <input
               type="range"
               value={field.state.value}
@@ -64,8 +64,8 @@ export const Form = ({ type = "random" }: { type: "random" | "pin" }) => {
               max={50}
               min={5}
             />
-            <span>{field.state.value}</span>
-          </>
+            <span className={styles["range-value"]}>{field.state.value}</span>
+          </div>
         )}
       ></form.Field>
       <form.Field
@@ -99,6 +99,7 @@ export const Form = ({ type = "random" }: { type: "random" | "pin" }) => {
         </button>
         <button
           type="submit"
+          className={styles["btn-primary"]}
           onClick={() => form.handleSubmit({ submitAction: "refresh" })}
         >
           Copy Password to Clipboard

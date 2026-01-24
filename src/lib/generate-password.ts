@@ -16,12 +16,14 @@ export const generatePassword = (
 ): string => {
   let newPassword = "";
 
+  const randomNum = (max: number) => Math.floor(Math.random() * max);
+
   while (newPassword.length < length) {
     let chosenLetter = "";
     if (hasLetters && !hasLetterRegex.test(newPassword)) {
       chosenLetter =
         PASSWORD_CHARACTERS.letters[
-          Math.floor(Math.random() * PASSWORD_CHARACTERS.letters.length)
+          randomNum(PASSWORD_CHARACTERS.letters.length)
         ];
       newPassword += chosenLetter;
       continue;
@@ -29,7 +31,7 @@ export const generatePassword = (
     if (hasNumbers && !hasNumberRegex.test(newPassword)) {
       chosenLetter =
         PASSWORD_CHARACTERS.numbers[
-          Math.floor(Math.random() * PASSWORD_CHARACTERS.numbers.length)
+          randomNum(PASSWORD_CHARACTERS.numbers.length)
         ];
       newPassword += chosenLetter;
 
@@ -38,7 +40,7 @@ export const generatePassword = (
     if (hasSpecialChars && !hasSpecialRegex.test(newPassword)) {
       chosenLetter =
         PASSWORD_CHARACTERS.special[
-          Math.floor(Math.random() * PASSWORD_CHARACTERS.special.length)
+          randomNum(PASSWORD_CHARACTERS.special.length)
         ];
 
       newPassword += chosenLetter;

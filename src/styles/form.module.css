@@ -10,6 +10,8 @@
 
 .form button {
   padding: 10px;
+  border-radius: var(--border-radius);
+  font-weight: 400;
 }
 
 .form .buttons-container {
@@ -17,4 +19,25 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.btn-primary {
+  color: var(--bg);
+  background-color: var(--primary-color);
+}
+
+.range-container {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+}
+
+.range-container input[type="range"] {
+  width: inherit;
+}
+
+.range-value {
+  padding: 10px;
+  border: 1px solid var(--secondary-color);
+  border-radius: 8px;
 }
