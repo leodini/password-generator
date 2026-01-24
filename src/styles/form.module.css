@@ -1,0 +1,20 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form input {
+  border-top: 1px solid rgb(215, 215, 219);
+}
+
+.form button {
+  padding: 10px;
+}
+
+.form .buttons-container {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

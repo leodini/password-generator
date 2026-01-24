@@ -1,0 +1,9 @@
+.align-text {
+  vertical-align: center;
+  align-content: center;
+  align-items: center;
+}
+
+.tab-text {
+  font-size: 0.75rem;
+}

@@ -1,0 +1,70 @@
+.toggle-container {
+  display: flex;
+  gap: 16px;
+  margin-top: 5px;
+  width: 100%;
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.toggle {
+  position: relative;
+  display: inline-block;
+  height: 20px;
+  width: 32px;
+}
+
+.toggle-input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.toggle-span {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 26px;
+  background-color: #606060;
+  transition: background-color 200ms ease-in-out;
+}
+
+.toggle-span::before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  top: 2px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform 200ms ease-in-out;
+}
+
+.toggle-span.check {
+  background-color: #046fea;
+}
+
+.toggle-span.check::before {
+  transform: translateX(12px);
+  animation: check 200ms ease-in-out forwards;
+}
+
+.toggle-span.uncheck::before {
+  transform: translateX(0);
+}
+
+@keyframes check {
+  100% {
+    transform: translateX(22px);
+  }
+}
+
+@keyframes uncheck {
+  100% {
+    transform: translateX(0);
+  }
+}

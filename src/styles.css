@@ -1,0 +1,44 @@
+:root {
+  --primary-color: #375896;
+  --bg: #fff;
+  --secondary-color: #ccc;
+  --border-radius: 4px;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--primary-color);
+  display: grid;
+  grid-template-columns: auto;
+  /* grid-template-rows: 1fr; */
+}
+
+@media screen and (max-width: 800px) {
+  body: {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+}
