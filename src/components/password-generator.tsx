@@ -6,12 +6,22 @@ import {
   hasSpecialRegex,
 } from "@/lib/password-regex";
 import { atom, useAtom } from "jotai";
-import { valuesAtom } from "./form";
+import { copyClipboardAtom, valuesAtom } from "./form";
+import { useEffect, useMemo, useRef } from "react";
+import { copyToClipboard } from "@/lib/copy-to-clipboard";
 
 const getValuesAtom = atom((get) => get(valuesAtom));
+const copyToClipboardAtom = atom(
+  (get) => get(copyClipboardAtom),
+  (_get, set, newValue: boolean) => {
+    set(copyClipboardAtom, newValue);
+  },
+);
 
 export const PasswordGenerator = () => {
   const [values] = useAtom(getValuesAtom);
+  const [clipboard, setClipboard] = useAtom(copyToClipboardAtom);
+  const ref = useRef<HTMLDivElement | null>(null);
 
   const getCssClass = (char: string) => {
     if (hasLetterRegex.test(char)) return "letter";
@@ -20,20 +30,39 @@ export const PasswordGenerator = () => {
     return "";
   };
 
-  return (
-    <div className={styles["password-container"]}>
-      {generatePassword(
+  useEffect(() => {
+    if (clipboard) copyText();
+  }, [clipboard]);
+
+  const copyText = () => {
+    if (ref.current) {
+      const spans = ref.current.querySelectorAll("span");
+      const textToCopy = Array.from(spans)
+        .map((s) => s.textContent)
+        .join("");
+      copyToClipboard(textToCopy);
+      setClipboard(false);
+    }
+  };
+
+  const memoized = useMemo(
+    () =>
+      generatePassword(
         values.charsLength,
         values.letters,
         values.numbers,
         values.symbols,
-      )
-        .split("")
-        .map((char) => (
-          <span className={`${styles.password} ${styles[getCssClass(char)]}`}>
-            {char}
-          </span>
-        ))}
+      ),
+    [values],
+  );
+
+  return (
+    <div className={styles["password-container"]} ref={ref}>
+      {memoized.split("").map((char) => (
+        <span className={`${styles.password} ${styles[getCssClass(char)]}`}>
+          {char}
+        </span>
+      ))}
     </div>
   );
 };

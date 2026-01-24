@@ -24,9 +24,11 @@ const formOptsPin = formOptions({
 });
 
 export const valuesAtom = atom(formOptsRandom.defaultValues);
+export const copyClipboardAtom = atom(false);
 
 export const Form = ({ type = "random" }: { type: "random" | "pin" }) => {
   const [, setValues] = useAtom(valuesAtom);
+  const [, setClipboard] = useAtom(copyClipboardAtom);
   const formOpts = type === "random" ? formOptsRandom : formOptsPin;
   const form = useForm({
     ...formOpts,
@@ -98,9 +100,9 @@ export const Form = ({ type = "random" }: { type: "random" | "pin" }) => {
           Refresh Password
         </button>
         <button
-          type="submit"
+          type="button"
           className={styles["btn-primary"]}
-          onClick={() => form.handleSubmit({ submitAction: "refresh" })}
+          onClick={() => setClipboard(true)}
         >
           Copy Password to Clipboard
         </button>

@@ -12,6 +12,7 @@
   padding: 10px;
   border-radius: var(--border-radius);
   font-weight: 400;
+  cursor: pointer;
 }
 
 .form .buttons-container {
