@@ -1,6 +1,4 @@
 export const PASSWORD_CHARACTERS = {
-  // chars:
-  //   "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$!%*?&()",
   letters: [
     "a",
     "b",

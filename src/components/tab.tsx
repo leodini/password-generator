@@ -40,12 +40,6 @@ const Tabs = ({ tabs, defaultTab = 0 }: TabsProps) => {
     }
   };
 
-  const renderContent = (el: any) => {
-    console.log(el);
-
-    return el;
-  };
-
   useEffect(() => {
     setTimeout(() => {
       updateIndicator(activeTab, false);
@@ -62,6 +56,21 @@ const Tabs = ({ tabs, defaultTab = 0 }: TabsProps) => {
     }
   };
 
+  const renderTab = (
+    renderTab: boolean,
+    index: number,
+    tab: { content: React.ReactElement },
+  ) => {
+    if (renderTab)
+      return (
+        <div key={index} className={`${styles["tab-panel"]}`}>
+          {tab.content}
+        </div>
+      );
+
+    return null;
+  };
+
   return (
     <div className={styles["tabs-container"]}>
       <div className={styles["tabs-header"]} ref={containerRef}>
@@ -76,7 +85,7 @@ const Tabs = ({ tabs, defaultTab = 0 }: TabsProps) => {
           {tabs.map((tab, index: number) => (
             <button
               key={index}
-              ref={(el) => (tabRefs.current[index] = el)}
+              ref={(el) => (tabRefs.current[index] = el as HTMLButtonElement)}
               className={`${styles["tab-button"]} ${activeTab === index ? "active" : ""}`}
               onClick={() => handleTabClick(index)}
             >
@@ -87,13 +96,7 @@ const Tabs = ({ tabs, defaultTab = 0 }: TabsProps) => {
       </div>
 
       <div className={styles["tab-content"]}>
-        {tabs.map((tab, index) => (
-          <Activity mode={activeTab === index ? "visible" : "hidden"}>
-            <div key={index} className={`${styles["tab-panel"]}`}>
-              {tab.content}
-            </div>
-          </Activity>
-        ))}
+        {tabs.map((tab, index) => renderTab(activeTab === index, index, tab))}
       </div>
     </div>
   );

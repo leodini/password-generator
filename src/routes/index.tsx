@@ -5,6 +5,8 @@ import { Hash, Shuffle } from "lucide-react";
 import styles from "@/styles/index.module.css";
 import { Card } from "@/components/card";
 import { Form } from "@/components/form";
+import { PasswordStrength } from "@/components/password-strength";
+import { PasswordWrapper } from "@/components/password-wrapper";
 
 export const Route = createFileRoute("/")({ component: App });
 
@@ -19,7 +21,10 @@ const tabs = [
       <div>
         <ClientOnly>
           <h4>Generated Password</h4>
-          <PasswordGenerator />
+          <PasswordWrapper>
+            <PasswordGenerator />
+            <PasswordStrength />
+          </PasswordWrapper>
           <h4>Customize your new password</h4>
           <Form type="random" />
         </ClientOnly>
@@ -36,7 +41,9 @@ const tabs = [
       <div>
         <ClientOnly>
           <h4>Generated Password</h4>
-          <PasswordGenerator />
+          <PasswordWrapper>
+            <PasswordGenerator />
+          </PasswordWrapper>
           <h4>Customize your new password</h4>
           <Form type="pin" />
         </ClientOnly>

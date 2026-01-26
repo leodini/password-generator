@@ -4,6 +4,7 @@ import { Toggle } from "./toggle";
 import { useEffect } from "react";
 import { DEFAULT_VALUES } from "@/constants/default-values";
 import styles from "@/styles/form.module.css";
+import { Button } from "./button";
 
 const formOptsRandom = formOptions({
   defaultValues: {
@@ -70,42 +71,47 @@ export const Form = ({ type = "random" }: { type: "random" | "pin" }) => {
           </div>
         )}
       ></form.Field>
-      <form.Field
-        name="numbers"
-        children={(field) => (
-          <Toggle
-            value={field.state.value}
-            onChange={(e) => field.handleChange(e.target.checked)}
-            name={field.name}
-            fieldLabel="Numbers"
-          />
-        )}
-      ></form.Field>
-      <form.Field
-        name="symbols"
-        children={(field) => (
-          <Toggle
-            value={field.state.value}
-            onChange={(e) => field.handleChange(e.target.checked)}
-            name={field.name}
-            fieldLabel="Symbols"
-          />
-        )}
-      ></form.Field>
+      {type === "random" && (
+        <>
+          <form.Field
+            name="numbers"
+            children={(field) => (
+              <Toggle
+                value={field.state.value}
+                onChange={(e) => field.handleChange(e.target.checked)}
+                name={field.name}
+                fieldLabel="Numbers"
+              />
+            )}
+          ></form.Field>
+          <form.Field
+            name="symbols"
+            children={(field) => (
+              <Toggle
+                value={field.state.value}
+                onChange={(e) => field.handleChange(e.target.checked)}
+                name={field.name}
+                fieldLabel="Symbols"
+              />
+            )}
+          ></form.Field>
+        </>
+      )}
       <div className={styles["buttons-container"]}>
-        <button
+        <Button
           type="submit"
+          variant="secondary"
           onClick={() => form.handleSubmit({ submitAction: "refresh" })}
         >
           Refresh Password
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
           className={styles["btn-primary"]}
           onClick={() => setClipboard(true)}
         >
           Copy Password to Clipboard
-        </button>
+        </Button>
       </div>
     </div>
   );

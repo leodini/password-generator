@@ -50,7 +50,6 @@
 
 .toggle-span.check::before {
   transform: translateX(12px);
-  animation: check 200ms ease-in-out forwards;
 }
 
 .toggle-span.uncheck::before {
@@ -59,7 +58,7 @@
 
 @keyframes check {
   100% {
-    transform: translateX(22px);
+    transform: translateX(12px);
   }
 }
 

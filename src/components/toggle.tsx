@@ -24,7 +24,7 @@ export const Toggle = ({ value, onChange, name, fieldLabel }: ToggleProps) => {
           name={name}
         />
         <span
-          className={`${styles["toggle-span"]} ${value ? "check" : "uncheck"}`}
+          className={`${styles["toggle-span"]} ${styles[value ? "check" : "uncheck"]}`}
         ></span>
       </label>
     </div>

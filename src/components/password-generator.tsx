@@ -6,11 +6,10 @@ import {
   hasSpecialRegex,
 } from "@/lib/password-regex";
 import { atom, useAtom } from "jotai";
-import { copyClipboardAtom, valuesAtom } from "./form";
-import { useEffect, useMemo, useRef } from "react";
+import { copyClipboardAtom } from "./form";
+import { useEffect, useRef } from "react";
 import { copyToClipboard } from "@/lib/copy-to-clipboard";
 
-const getValuesAtom = atom((get) => get(valuesAtom));
 const copyToClipboardAtom = atom(
   (get) => get(copyClipboardAtom),
   (_get, set, newValue: boolean) => {
@@ -18,8 +17,7 @@ const copyToClipboardAtom = atom(
   },
 );
 
-export const PasswordGenerator = () => {
-  const [values] = useAtom(getValuesAtom);
+export const PasswordGenerator = ({ password }: { password?: string }) => {
   const [clipboard, setClipboard] = useAtom(copyToClipboardAtom);
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -45,20 +43,9 @@ export const PasswordGenerator = () => {
     }
   };
 
-  const memoized = useMemo(
-    () =>
-      generatePassword(
-        values.charsLength,
-        values.letters,
-        values.numbers,
-        values.symbols,
-      ),
-    [values],
-  );
-
   return (
     <div className={styles["password-container"]} ref={ref}>
-      {memoized.split("").map((char) => (
+      {password?.split("").map((char) => (
         <span className={`${styles.password} ${styles[getCssClass(char)]}`}>
           {char}
         </span>
