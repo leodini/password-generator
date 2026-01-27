@@ -7,6 +7,7 @@ import { Card } from "@/components/card";
 import { Form } from "@/components/form";
 import { PasswordStrength } from "@/components/password-strength";
 import { PasswordWrapper } from "@/components/password-wrapper";
+import { Footer } from "@/components/footer";
 
 export const Route = createFileRoute("/")({ component: App });
 
@@ -67,6 +68,7 @@ function App() {
         <h3>Choose password type</h3>
         <Tabs tabs={tabs} defaultTab={0} />
       </Card>
+      <Footer />
     </div>
   );
 }
