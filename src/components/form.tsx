@@ -65,7 +65,7 @@ export const Form = ({ type = "random" }: { type: "random" | "pin" }) => {
               type="range"
               value={field.state.value}
               onChange={(e) => field.handleChange(e.target.value)}
-              max={50}
+              max={100}
               min={5}
             />
             <span className={styles["range-value"]}>{field.state.value}</span>
