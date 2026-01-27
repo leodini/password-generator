@@ -60,6 +60,7 @@ export const Form = ({ type = "random" }: { type: "random" | "pin" }) => {
         name="charsLength"
         children={(field) => (
           <div className={styles["range-container"]}>
+            <label htmlFor={field.name}>Characters</label>
             <input
               type="range"
               value={field.state.value}
@@ -72,7 +73,7 @@ export const Form = ({ type = "random" }: { type: "random" | "pin" }) => {
         )}
       ></form.Field>
       {type === "random" && (
-        <>
+        <div className={styles["controls"]}>
           <form.Field
             name="numbers"
             children={(field) => (
@@ -95,7 +96,7 @@ export const Form = ({ type = "random" }: { type: "random" | "pin" }) => {
               />
             )}
           ></form.Field>
-        </>
+        </div>
       )}
       <div className={styles["buttons-container"]}>
         <Button
@@ -110,7 +111,7 @@ export const Form = ({ type = "random" }: { type: "random" | "pin" }) => {
           className={styles["btn-primary"]}
           onClick={() => setClipboard(true)}
         >
-          Copy Password to Clipboard
+          Copy to Clipboard
         </Button>
       </div>
     </div>

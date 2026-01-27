@@ -1,17 +1,11 @@
 const levels = {
-  1: "very weak",
-  2: "weak",
-  3: "medium",
-  4: "strong",
+  1: "weak",
+  2: "medium",
+  3: "strong",
 };
 
 export const checkPasswordStrength = (pwd: string) => {
-  const checks = [
-    /[a-z]/, // Lowercase
-    /[A-Z]/, // Uppercase
-    /\d/, // Digit
-    /[@.#$!%^&*.?]/, // Special character
-  ];
+  const checks = [/[a-zA-Z]/, /\d/, /[@.#$!%^&*.?]/];
 
   const score = checks.reduce((acc, regex) => acc + regex.test(pwd), 0);
 

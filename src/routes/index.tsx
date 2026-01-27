@@ -20,12 +20,12 @@ const tabs = [
     content: (
       <div>
         <ClientOnly>
-          <h4>Generated Password</h4>
+          <h4 className={styles["title"]}>Generated Password</h4>
           <PasswordWrapper>
             <PasswordGenerator />
             <PasswordStrength />
           </PasswordWrapper>
-          <h4>Customize your new password</h4>
+          <h4 className={styles["title"]}>Customize your new password</h4>
           <Form type="random" />
         </ClientOnly>
       </div>
@@ -40,11 +40,11 @@ const tabs = [
     content: (
       <div>
         <ClientOnly>
-          <h4>Generated Password</h4>
+          <h4 className={styles["title"]}>Generated Password</h4>
           <PasswordWrapper>
             <PasswordGenerator />
           </PasswordWrapper>
-          <h4>Customize your new password</h4>
+          <h4 className={styles["title"]}>Customize your new password</h4>
           <Form type="pin" />
         </ClientOnly>
       </div>
@@ -54,11 +54,19 @@ const tabs = [
 
 function App() {
   return (
-    <>
+    <div className={styles["app-container"]}>
+      <div className={styles["title-container"]}>
+        <h1 className={styles["app-title"]}>
+          Strong 💪 and Secure Password Generator.
+        </h1>
+        <p className={styles["app-subtitle"]}>
+          A awesome generator for powerful passwords to protect your accounts.
+        </p>
+      </div>
       <Card>
         <h3>Choose password type</h3>
         <Tabs tabs={tabs} defaultTab={0} />
       </Card>
-    </>
+    </div>
   );
 }
