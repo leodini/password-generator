@@ -5,7 +5,8 @@ import { ShieldPlus } from "lucide-react";
 const labels = {
   weak: "Weak",
   medium: "Average",
-  strong: "Very Secure",
+  strong: "Secure",
+  "very-strong": "Very Secure",
 };
 
 export const PasswordStrength = ({ password }: { password?: string }) => {

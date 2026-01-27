@@ -1,7 +1,7 @@
 import { atom, useAtom } from "jotai";
 import { formOptions, useForm } from "@tanstack/react-form";
 import { Toggle } from "./toggle";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { DEFAULT_VALUES } from "@/constants/default-values";
 import styles from "@/styles/form.module.css";
 import { Button } from "./button";
@@ -30,6 +30,7 @@ export const copyClipboardAtom = atom(false);
 export const Form = ({ type = "random" }: { type: "random" | "pin" }) => {
   const [, setValues] = useAtom(valuesAtom);
   const [, setClipboard] = useAtom(copyClipboardAtom);
+  const [copyButtonLabel, setCopyButtonLabel] = useState("Copy to Clipboard");
   const formOpts = type === "random" ? formOptsRandom : formOptsPin;
   const form = useForm({
     ...formOpts,
@@ -45,6 +46,12 @@ export const Form = ({ type = "random" }: { type: "random" | "pin" }) => {
         : formOptsPin.defaultValues;
     setValues(newValue);
   }, [type]);
+
+  const handleCopyToClipboard = () => {
+    setCopyButtonLabel("Copied!");
+    setClipboard(true);
+    setTimeout(() => setCopyButtonLabel("Copy to Clipboard"), 2000);
+  };
 
   useEffect(() => {
     const unsub = form.store.subscribe(() => {
@@ -109,9 +116,9 @@ export const Form = ({ type = "random" }: { type: "random" | "pin" }) => {
         <Button
           type="button"
           className={styles["btn-primary"]}
-          onClick={() => setClipboard(true)}
+          onClick={handleCopyToClipboard}
         >
-          Copy to Clipboard
+          {copyButtonLabel}
         </Button>
       </div>
     </div>
