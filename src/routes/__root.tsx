@@ -29,6 +29,10 @@ export const Route = createRootRoute({
           "https://password-generator.leonardodini13478-1ff.workers.dev/",
         property: "og:url",
       },
+      {
+        content: "../../public/logo1.png",
+        property: "og:image",
+      },
     ],
     links: [
       {
