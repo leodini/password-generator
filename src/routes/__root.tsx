@@ -16,6 +16,19 @@ export const Route = createRootRoute({
       {
         title: "Strong password generator",
       },
+      {
+        content: "Password Generator",
+        property: "og:title",
+      },
+      {
+        content: "Strong and secure password generator",
+        property: "og:description",
+      },
+      {
+        content:
+          "https://password-generator.leonardodini13478-1ff.workers.dev/",
+        property: "og:url",
+      },
     ],
     links: [
       {
@@ -32,7 +45,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
-        <script src="https://unpkg.com/react-scan/dist/auto.global.js" />
         <HeadContent />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
