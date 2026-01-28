@@ -2,6 +2,10 @@
 
 A modern, secure password generator built with React and TanStack Router. Generate strong, customizable passwords with real-time strength analysis and easy copying to clipboard.
 
+## 🚀 Live Demo
+
+Check out the working project at: **[https://password-generator.leonardodini13478-1ff.workers.dev/](https://password-generator.leonardodini13478-1ff.workers.dev/)**
+
 ## Features
 
 - 🔐 **Secure Password Generation**: Generate cryptographically secure random passwords
