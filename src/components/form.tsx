@@ -12,6 +12,7 @@ const formOptsRandom = formOptions({
     numbers: DEFAULT_VALUES.form.random.hasNumbers,
     letters: DEFAULT_VALUES.form.random.hasLetters,
     symbols: DEFAULT_VALUES.form.random.hasSymbols,
+    refresh: false,
   },
 });
 
@@ -21,20 +22,24 @@ const formOptsPin = formOptions({
     numbers: DEFAULT_VALUES.form.pin.hasNumbers,
     letters: DEFAULT_VALUES.form.pin.hasLetters,
     symbols: DEFAULT_VALUES.form.pin.hasSymbols,
+    refresh: false,
   },
 });
 
 export const valuesAtom = atom(formOptsRandom.defaultValues);
 export const copyClipboardAtom = atom(false);
+export const refreshAtom = atom(false);
 
 export const Form = ({ type = "random" }: { type: "random" | "pin" }) => {
   const [, setValues] = useAtom(valuesAtom);
   const [, setClipboard] = useAtom(copyClipboardAtom);
+  const [, setRefresh] = useAtom(refreshAtom);
   const [copyButtonLabel, setCopyButtonLabel] = useState("Copy to Clipboard");
   const formOpts = type === "random" ? formOptsRandom : formOptsPin;
   const form = useForm({
     ...formOpts,
     onSubmit: async ({ value }) => {
+      setRefresh(true);
       setValues(value);
     },
   });

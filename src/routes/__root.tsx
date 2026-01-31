@@ -30,7 +30,7 @@ export const Route = createRootRoute({
         property: "og:url",
       },
       {
-        content: "../../public/logo1.png",
+        content: "@/logo1.png",
         property: "og:image",
       },
     ],
